@@ -1,0 +1,21 @@
+$v-app-background-color: hsl(71, 100%, 87%);
+
+@import "../valo/valo";
+
+.todo {
+	@include valo;
+}
+
+.v-nativebutton-borderless {
+	border: none;
+	background: transparent;
+	cursor: pointer;
+}
+
+.v-label-strike {
+	text-decoration: line-through;
+}
+
+.FontAwesome {
+	font-size: 20px;
+}
