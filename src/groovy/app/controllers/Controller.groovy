@@ -11,6 +11,7 @@ import com.vaadin.ui.Notification
 
 import com.vaadin.grails.Grails
 import tutorial.*
+import app.listener.ButtonDeleteListener
 
 class Controller {
 	TodoService todoService
@@ -33,12 +34,17 @@ class Controller {
 
 			Label titleLabel = new Label(todo.title)
 			Label nameLabel = new Label(todo.name)
+			Button btnDel = new Button("ลบ")
+			btnDel.setStyleName("danger")
+			btnDel.addClickListener(new ButtonDeleteListener(todo.id))
 
 			hLayout.addComponent(titleLabel)
 			hLayout.addComponent(nameLabel)
+			hLayout.addComponent(btnDel)
 
 			hLayout.setExpandRatio(titleLabel, 1.0f)
 			hLayout.setExpandRatio(nameLabel, 1.0f)
+			hLayout.setExpandRatio(btnDel, 0.25f)
 
 			Panel p = new Panel()
 	        p.setContent(hLayout)
@@ -50,5 +56,9 @@ class Controller {
 
 	void save(Todo todo) {
 		todoService.save(todo)
+	}
+
+	void delete(Long id) {
+		todoService.delete(id)
 	}
 }
